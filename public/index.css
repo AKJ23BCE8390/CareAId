@@ -1,0 +1,73 @@
+.features .icon {
+    width: 80px;
+    height: 80px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.features .icon svg,
+.features .icon img {
+    width: 100%;
+    height: auto;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+}
+
+header img {
+    width: 50px;
+    height: auto;
+}
+
+.hero {
+    background: url('/images/hero_section.webp') no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+.features {
+    padding: 50px 20px;
+}
+.features h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.features .card {
+    border: none;
+    transition: transform 0.3s;
+}
+.features .card:hover {
+    transform: scale(1.05);
+}
+.features .icon {
+    font-size: 3rem;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+footer {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 20px 0;
+}
