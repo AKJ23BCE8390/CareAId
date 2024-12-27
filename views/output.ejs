@@ -5,77 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./report.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Health Report</title>
+    <title>Health Report - Conditions</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #f9f9f9, #eaf2f8);
+            padding: 30px;
+        }
+
+        .highlight-title {
+            background: linear-gradient(90deg, #007bff, #6610f2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .condition-card {
+            background: linear-gradient(135deg, #fff, #f0f9ff);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .condition-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .condition-icon {
+            font-size: 4rem;
+            margin-right: 20px;
+            color: #17a2b8;
+        }
+
+        .condition-title {
+            font-size: 1.75rem;
+            font-weight: bold;
+        }
+
+        .condition-probability {
+            color: #007bff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            padding: 15px 0;
+        }
+    </style>
 </head>
 <body>
-    <header class="d-flex justify-content-between align-items-center p-3 border-bottom">
+    <header class="d-flex justify-content-between align-items-center p-3 border-bottom bg-light">
         <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-            <span class="fs-4 ms-2">CareAId</span>
+            <span class="fs-4 ms-2 fw-bold">CareAId</span>
         </a>
         <a href="/" class="btn btn-primary">Home</a>
     </header>
 
-    <div class="container my-5">
-        <h1 class="text-center mb-4">AI-Generated Health Report</h1>
-        <div class="card mb-4">
+    <main class="container my-5">
+        <h1 class="highlight-title">Your Health Report</h1>
+        <div class="card">
             <div class="card-body">
-                <h2 class="card-title">Summary</h2>
-                <p class="card-text"><% if (symptoms){%>
-                    <%=symptoms%>
-                <%}else{%>
-                   Error
-                <% } %></p>
-            </div>
-        </div>
-
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h3 class="card-title">Analysis</h3>
-                        <p>Our AI suggests that your symptoms might indicate the following conditions:</p>
-                        <ul>
-                            <li><strong>Condition 1:</strong> Mild dehydration</li>
-                            <li><strong>Condition 2:</strong> Viral infection</li>
-                            <li><strong>Condition 3:</strong> Seasonal allergies</li>
-                        </ul>
-                        <p><em>Please consult a healthcare professional for confirmation.</em></p>
-                    </div>
+                <h2 class="text-center text-secondary mb-4" style="font-size: 2rem;">Possible Conditions</h2>
+                <p class="text-center text-muted" style="font-size: 1.2rem;">Based on your symptoms, here are the potential diagnoses:</p>
+                <div>
+                    <% results.forEach((result, index) => { %>
+                        <div class="condition-card">
+                            <i class="bi bi-heart-pulse condition-icon"></i>
+                            <div>
+                                <div class="condition-title">Condition <%= index + 1 %>: <%= result.disease %></div>
+                                <div>Probability: <span class="condition-probability"><%= (result.probability * 100).toFixed(2) %>%</span></div>
+                            </div>
+                        </div>
+                    <% }); %>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h3 class="card-title">Recommendations</h3>
-                        <ul>
-                            <li>Stay hydrated by drinking plenty of water.</li>
-                            <li>Take over-the-counter antihistamines for allergies.</li>
-                            <li>Monitor symptoms and visit a doctor if they persist.</li>
-                        </ul>
-                    </div>
-                </div>
+                <p class="text-center mt-4">
+                    <em>Please consult a healthcare professional for confirmation and further treatment.</em>
+                </p>
             </div>
         </div>
+    </main>
 
-        <div class="card mb-4">
-            <div class="card-body">
-                <h3 class="card-title">Next Steps</h3>
-                <p>Here are trusted specialists near you:</p>
-                <ul>
-                    <li>Dr. Jane Doe - General Physician (2 km away)</li>
-                    <li>Dr. John Smith - ENT Specialist (3.5 km away)</li>
-                </ul>
-                <a href="#book-appointment" class="btn btn-primary">Book an Appointment</a>
-            </div>
-        </div>
-
-        <div class="text-center">
-            <button class="btn btn-success">Download Report</button>
-        </div>
-    </div>
-
-    <footer class="text-center py-3 border-top">
-        <p>&copy; 2024 CareAId. All rights reserved.</p>
+    <footer class="text-center">
+        <p class="mb-0">&copy; 2024 CareAId. All rights reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

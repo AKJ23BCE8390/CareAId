@@ -13,9 +13,10 @@
   "dependencies": {
     "@tensorflow/tfjs": "^4.22.0",
     "body-parser": "^1.20.3",
-    "csv-parser": "^3.0.0",
+    "csv-parser": "^3.1.0",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "json": "^11.0.0",
     "nodemon": "^3.1.9"
   }
 }
