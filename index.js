@@ -1,7 +1,7 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import * as tf from '@tensorflow/tfjs';
-import diseaseData from './data/disease_symptoms.json' assert { type: 'json' };
+const express = require('express');
+const bodyParser = require('body-parser');
+const tf = require('@tensorflow/tfjs');
+const diseaseData = require('./data/disease_symptoms.json'); // Use require for JSON in CommonJS
 
 console.log("Loaded Disease Data:", diseaseData);
 
